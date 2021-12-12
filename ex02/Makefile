@@ -2,7 +2,6 @@
 
 NAME	=	array
 LIST	=	main \
-			Array \
 			
 HEADER	=	-I includes/
 CFLAGS	=	-Wall -Wextra -Werror -MMD -std=c++98 -g3 -fsanitize=address

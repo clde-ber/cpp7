@@ -7,7 +7,8 @@ template< typename T, unsigned int N >
 class Array
 {
     private:
-        T* const _array;
+        T* _array;
+        unsigned int _n;
         class OutOfLimitsException : public std::exception
         {
             public:
@@ -17,23 +18,23 @@ class Array
                 }
         };
     public:
-        Array(void) {  _array = new T[0]; }
-        Array(unsigned int n) { _array = new T[n]; }
-        Array(Array const & rhs) : _array(new Array<T, N>(rhs)) {}
-        Array const & operator=(Array const & rhs)
-        {
-            new (this) T(rhs, N);
-            return *this;
-        }
-        ~Array(void) {};
-        unsigned int size()
-        {
-            return N;
-        }
-        T const & operator[](unsigned int n)
-        {
-            return this[n];
-        }
+        Array(void); // {  _array = new T[0]; }
+        Array(unsigned int n); // { _array = new T[n]; }
+        Array(Array const & rhs); // : _array(new Array<T, N>(rhs)) {}
+        Array & operator=(Array const & rhs);
+     //   {
+     //       new (this) T(rhs, N);
+     //       return *this;
+     //   }
+        ~Array(void); // {};
+        unsigned int size() const;
+     //   {
+     //       return N;
+     //   }
+        T & operator[](unsigned int n);
+     //   {
+     //       return this[n];
+     //   }
 };
 
 #endif
