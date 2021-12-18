@@ -37,7 +37,6 @@ Array<T> & Array<T>::operator=(Array const & rhs)
 	catch(const std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
-        return *this;
 	}
     return *this;
 }
