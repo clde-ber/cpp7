@@ -20,11 +20,13 @@ int main()
     tabD[1] = 2.45;
     tabD[2] = 8.75;
     tabD[3] = 0.9876;
+    const char *constTab("constant");
     
     ::iter(tabC, 3, print);
     ::iter(tabI, 4, print);
     ::iter(tabF, 2, print);
     ::iter(tabD, 4, print);
+    ::iter(constTab, 9, print);
 
     delete [] tabC;
     delete [] tabI;
