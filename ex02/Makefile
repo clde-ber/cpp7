@@ -5,7 +5,7 @@ LIST	=	main \
 			
 HEADER	=	-I includes/
 CFLAGS	=	-Wall -Wextra -Werror -MMD -std=c++98
-CC		=	clang++
+CC		=	c++
 
 S_DIR	=	srcs/
 I_DIR	=	includes/

@@ -5,7 +5,7 @@ LIST	=	main \
 			
 HEADER	=	-I includes/
 CFLAGS	=	-Wall -Wextra -Werror -MMD -std=c++98
-CC		=	clang++
+CC		=	c++
 
 S_DIR	=	srcs/
 I_DIR	=	includes/
@@ -50,3 +50,9 @@ re	:			fclean all
 .PHONY	:		all clean fclean re
 
 -include	$(DEPS)
+
+#c++
+#copy the values in constructors
+#no .tpp file
+#const for ex01 (3rd fonction)
+# 
