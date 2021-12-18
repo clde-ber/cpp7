@@ -10,11 +10,11 @@ void print(T & arrayEl)
 }
 
 template< typename T >
-void iter(T** arrayAddress, int len, void (*f)(T & arrayEl))
+void iter(T* arrayAddress, int len, void (*f)(T & arrayEl))
 {
     for (int i = 0; i < len; i++)
     {
-        f((*arrayAddress)[i]);
+        f(arrayAddress[i]);
     }
 }
 

@@ -50,9 +50,3 @@ re	:			fclean all
 .PHONY	:		all clean fclean re
 
 -include	$(DEPS)
-
-#c++
-#copy the values in constructors
-#no .tpp file
-#const for ex01 (3rd fonction)
-# 
