@@ -1,79 +1,132 @@
-#include "Array.hpp"
-#include "Array.tpp"
+// #include "Array.hpp"
+// #include "Array.tpp"
 
-int main()
+// int main()
+// {
+//     Array<const unsigned char> arr(5);
+//     std::cout << "array size: " << arr.size() << std::endl;
+//     for (unsigned int i = 0; i < arr.size() * 2; i++)
+//     {
+//         try
+//         {
+//             std:: cout << arr[i] << std::endl;
+//         }
+//         catch(const std::exception& e)
+//         {
+//             std::cout << e.what() << std::endl;
+//         }
+//     }
+//     Array<const double> arr2(10);
+//     std::cout << "array size: " << arr2.size() << std::endl;
+//     for (unsigned int i = 0; i < arr2.size() * 2; i++)
+//     {
+//         try
+//         {
+//             std:: cout << arr2[i] << std::endl;
+//         }
+//         catch(const std::exception& e)
+//         {
+//             std::cout << e.what() << std::endl;
+//         }
+//     }
+//     Array<float> arr3(3);
+//     std::cout << "array size: " << arr3.size() << std::endl;
+//     for (unsigned int i = 0; i < arr3.size(); i++)
+//     {
+//         try
+//         {
+//             std:: cout << arr3[i] << std::endl;
+//         }
+//         catch(const std::exception& e)
+//         {
+//             std::cout << e.what() << std::endl;
+//         }
+//     }
+//     Array<const double> arr4(arr2);
+//     std::cout << "array size: " << arr4.size() << std::endl;
+//     for (unsigned int i = 0; i < arr4.size(); i++)
+//     {
+//         try
+//         {
+//             std:: cout << arr4[i] << std::endl;
+//         }
+//         catch(const std::exception& e)
+//         {
+//             std::cout << e.what() << std::endl;
+//         }
+//     }
+//     Array<unsigned int> arr5(10);
+//     Array<unsigned int> arr6(15);
+//     Array<unsigned int> arr7(3);
+//     Array<unsigned int> arr8(3);
+//     Array<float> arr9(3);
+//     try
+//     {
+//         std::cout << "********** Trying to assign arrays of different size and same type **********" << std::endl;
+//         arr5 = arr6;
+//         std::cout << "**********    Trying to assign arrays of same size and same type   **********" << std::endl;
+//         arr8 = arr7;
+//         std::cout << "array size: " << arr8.size() << std::endl;
+//         for (unsigned int i = 0; i < arr8.size(); i++)
+//             std:: cout << arr8[i] << std::endl;
+//     }
+//     catch(const std::exception& e)
+//     {
+//         std::cout << e.what() << std::endl;
+//     }
+//     return 0;
+// }
+
+#include <iostream>
+#include <Array.tpp>
+
+#define MAX_VAL 750
+int main(int, char**)
 {
-    Array<const char, 5> arr(5);
-    std::cout << "array size: " << arr.size() << std::endl;
-    for (unsigned int i = 0; i < arr.size() * 2; i++)
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
     {
-        try
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
         {
-            std:: cout << arr[i] << std::endl;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
+            std::cout << "didn't save the same value!!" << std::endl;
+            return 1;
         }
     }
-    Array<const unsigned char, 10> arr2(10);
-    std::cout << "array size: " << arr2.size() << std::endl;
-    for (unsigned int i = 0; i < arr2.size() * 2; i++)
+    try
     {
-        try
-        {
-            std:: cout << arr2[i] << std::endl;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        numbers[-2] = 0;
     }
-    Array<const unsigned int, 3> arr3(3);
-    std::cout << "array size: " << arr3.size() << std::endl;
-    for (unsigned int i = 0; i < arr3.size(); i++)
+    catch(const std::exception& e)
     {
-        try
-        {
-            std:: cout << arr3[i] << std::endl;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        std::cout << e.what() << '\n';
     }
-    Array<const unsigned char, 10> arr4(arr2);
-    std::cout << "array size: " << arr4.size() << std::endl;
-    for (unsigned int i = 0; i < arr4.size(); i++)
+    try
     {
-        try
-        {
-            std:: cout << arr4[i] << std::endl;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        numbers[MAX_VAL] = 0;
     }
-    Array<unsigned int, 10> arr5(10);
-    Array<unsigned int, 10> arr6(3);
-    Array<unsigned int, 3> arr7(3);
-    Array<unsigned int, 3> arr8(3);
-    std::cout << "********** Trying to assign arrays of different size and same type **********" << std::endl;
-    arr5 = arr6;
-    std::cout << "**********    Trying to assign arrays of same size and same type   **********" << std::endl;
-    arr8 = arr7;
-    std::cout << "array size: " << arr8.size() << std::endl;
-    for (unsigned int i = 0; i < arr8.size(); i++)
+    catch(const std::exception& e)
     {
-        try
-        {
-            std:: cout << arr8[i] << std::endl;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << std::endl;
-        }
+        std::cout << e.what() << '\n';
     }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
     return 0;
 }

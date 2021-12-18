@@ -2,8 +2,9 @@
 #define ARRAY_H
 
 #include <iostream>
+#include <cstdlib>
 
-template< typename T, unsigned int N >
+template< typename T>
 class Array
 {
     private:
@@ -18,23 +19,13 @@ class Array
                 }
         };
     public:
-        Array(void); // {  _array = new T[0]; }
-        Array(unsigned int n); // { _array = new T[n]; }
-        Array(Array const & rhs); // : _array(new Array<T, N>(rhs)) {}
+        Array(void);
+        Array(unsigned int n);
+        Array(Array const & rhs);
         Array & operator=(Array const & rhs);
-     //   {
-     //       new (this) T(rhs, N);
-     //       return *this;
-     //   }
-        ~Array(void); // {};
+        ~Array(void);
         unsigned int size() const;
-     //   {
-     //       return N;
-     //   }
         T & operator[](unsigned int n);
-     //   {
-     //       return this[n];
-     //   }
 };
 
 #endif

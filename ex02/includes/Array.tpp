@@ -3,32 +3,32 @@
 
 #include "Array.hpp"
 
-template< typename T, unsigned int N >
-Array<T, N>::Array(void) :  _array(new T[N]()), _n(N)
+template< typename T >
+Array<T>::Array(void) :  _array(new T[0]()), _n(0)
 {
 
 }
 
-template< typename T, unsigned int N >
-Array<T, N>::Array(unsigned int n) : _array(new T[n]()), _n(n)
+template< typename T >
+Array<T>::Array(unsigned int n) : _array(new T[n]()), _n(n)
 {
 
 }
 
-template< typename T, unsigned int N >
-Array<T, N>::Array(Array const & rhs) : _array(new T[rhs._n]()), _n(rhs._n)
+template< typename T >
+Array<T>::Array(Array const & rhs) : _array(new T[rhs._n]()), _n(rhs._n)
 {
 
 }
 
-template< typename T, unsigned int N >
-Array<T, N> & Array<T, N>::operator=(Array const & rhs)
+template< typename T >
+Array<T> & Array<T>::operator=(Array const & rhs)
 {
     try
 	{
 		for(unsigned int i = 0; i < rhs.size(); i++)
 		{
-			if (i >= rhs._n)
+			if (i >= rhs._n or i >= _n)
 				throw OutOfLimitsException();
 		}
         for(unsigned int i = 0; i < rhs.size(); i++)
@@ -36,29 +36,29 @@ Array<T, N> & Array<T, N>::operator=(Array const & rhs)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
         return *this;
 	}
     return *this;
 }
 
-template< typename T, unsigned int N >
-Array<T, N>::~Array(void)
+template< typename T >
+Array<T>::~Array(void)
 {
     if (_array)
         delete [] _array;
 }
 
-template< typename T, unsigned int N >
-unsigned int Array<T, N>::size() const
+template< typename T >
+unsigned int Array<T>::size() const
 {
-    return N;
+    return _n;
 }
 
-template< typename T, unsigned int N >
-T & Array<T, N>::operator[](unsigned int n)
+template< typename T >
+T & Array<T>::operator[](unsigned int n)
 {
-    if (n < 0 or n >= N)
+    if (n < 0 or n >= _n)
         throw OutOfLimitsException();
     return _array[n];
 }
