@@ -4,13 +4,13 @@
 #include <iostream>
 
 template< typename T >
-void print(T & arrayEl)
+void printArray(T const & arrayEl)
 {
     std::cout << arrayEl << std::endl;
 }
 
 template< typename T >
-void iter(T* arrayAddress, int len, void (*f)(T & arrayEl))
+void iter(T* arrayAddress, int len, void (*f)(T const & arrayEl))
 {
     for (int i = 0; i < len; i++)
     {

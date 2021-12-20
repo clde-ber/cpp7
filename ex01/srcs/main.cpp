@@ -22,11 +22,11 @@ int main()
     tabD[3] = 0.9876;
     const char *constTab("constant");
     
-    ::iter(tabC, 3, print);
-    ::iter(tabI, 4, print);
-    ::iter(tabF, 2, print);
-    ::iter(tabD, 4, print);
-    ::iter(constTab, 9, print);
+    ::iter(tabC, 3, printArray);
+    ::iter(tabI, 4, printArray);
+    ::iter(tabF, 2, printArray);
+    ::iter(tabD, 4, printArray);
+    ::iter(constTab, 9, printArray);
 
     delete [] tabC;
     delete [] tabI;
